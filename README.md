@@ -18,6 +18,10 @@ Existing Features
 
 Features Left to Implement
 
+Techinologies Used:
+HTML,CSS,JS
+Tiled
+
 Testing
 
 Credits
