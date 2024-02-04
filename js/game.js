@@ -5,6 +5,12 @@ const c = canvas.getContext("2d")
 canvas.width = 1024;
 canvas.height = 576;
 
+ResizeCanvas();
+window.addEventListener('resize', ()=>
+{
+    ResizeCanvas();
+})
+
 //Scaling down our canvas dimensions base on the translated scale on the image
 const scaledcanvas =  {
     width: canvas.width/4,
@@ -205,14 +211,14 @@ function animate()
     {
         player.previous_direction = 'right'
         player.swapSprite("Run")
-        player.velocity.x = 3;
+        player.velocity.x = 2.5;
         player.when_to_MoveCameraToLeft({camera,canvas,background})
     }
     else if(keys.a.pressed)
     {
         player.previous_direction = 'left'
         player.swapSprite('RunLeft')
-        player.velocity.x = -3;
+        player.velocity.x = -2.5;
         player.when_to_MoveCameraToRight({camera})
     }
     else if(player.AtFloor) //Not jumping/falling, not moving left and right
@@ -282,6 +288,7 @@ window.addEventListener("keydown",(event)=>
             keys.a.pressed = true            
             break;
         case "w":
+            //player.velocity.y = -8;
             if(player.velocity.y > 0) //If player is falling, they won't be able to jump
             {
                 player.AtFloor = false;
@@ -291,7 +298,6 @@ window.addEventListener("keydown",(event)=>
                 player.velocity.y = -8;
                 player.AtFloor = false;
             }
-            //keys.w.pressed = true;            
             
             break;
 
@@ -313,7 +319,13 @@ window.addEventListener("keyup",(event)=>
     }
 })
 
-
+function ResizeCanvas()
+{
+    const width = window.innerWidth *0.97;
+    const height = window.innerHeight *0.95;
+    canvas.width = width;
+    canvas.height = height;
+}
 
 
 
