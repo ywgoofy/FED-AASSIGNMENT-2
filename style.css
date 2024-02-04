@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    background-color: #000; /* Optional: Set a base background color */
+}
+
+.main-menu {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* Ensure the image does not overflow */
+}
+
+.main-menu img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image covers the entire area */
+}
+
+.menu-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.menu-buttons h1 {
+    font-family: 'Workbench';
+    font-size: 72px;
+    color: #710707;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.menu-buttons button {
+    padding: 10px 20px; /* Adjust the padding as needed */
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-family: 'Honk';
+    width: auto; /* Remove the fixed width */
+    height: auto; /* Remove the fixed height */
+    display: inline-block; /* Allow the button to shrink to fit its contents */
+    margin-bottom: 10px;
+}
+
+.menu-buttons button:hover {
+    background-color: transparent;
+}
