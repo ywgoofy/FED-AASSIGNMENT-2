@@ -26,6 +26,7 @@ Testing
 
 Credits
 https://iconduck.com/icons/68200/settings (settings image link)
+https://penzilla.itch.io/hooded-protagonist (Sprite, Main Character)
 
 Content
 
