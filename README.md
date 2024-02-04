@@ -18,11 +18,14 @@ Existing Features
 
 Features Left to Implement
 
+Techinologies Used:
+HTML,CSS,JS
+Tiled
+
 Testing
 
 Credits
 https://iconduck.com/icons/68200/settings (settings image link)
-https://i.pinimg.com/originals/2c/dd/2b/2cdd2b6c9faa5bef201dd2b6b3d9e861.gif (Main Menu Background Animation)
 
 Content
 
