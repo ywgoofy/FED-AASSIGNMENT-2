@@ -86,7 +86,8 @@ const background = new Sprite(
             y:0,
         },
         //imageSrc:'./img/Background.png'
-        imageSrc : './img/Map.png'
+        //imageSrc : './img/Map.png'
+        imageSrc: '/img/Map.png'
     }
 )
 //Height of the background
@@ -102,55 +103,55 @@ const player = new Player({
     },
     collisionblocks : collisionblocks,
     platformcollisionblocks: platform_collisionblocks,
-    imageSrc: './img/character/Idle.png',
+    imageSrc: '/img/character/Idle.png',
     frame_rate: 2,
     sprite_animation:
     {
         Idle:
         {
-            imageSrc: './img/character/Idle.png',
+            imageSrc: '/img/character/Idle.png',
             frame_rate: 2,
             frame_count: 25,
         },
         IdleLeft:
         {
-            imageSrc: './img/character/Idle-Left.png',
+            imageSrc: '/img/character/Idle-Left.png',
             frame_rate: 2,
             frame_count: 25,
         },
         Run:
         {
-            imageSrc: './img/character/Running.png',
+            imageSrc: '/img/character/Running.png',
             frame_rate: 8,
             frame_count: 5,
         },
         RunLeft:
         {
-            imageSrc: './img/character/Running-Left.png',
+            imageSrc: '/img/character/Running-Left.png',
             frame_rate: 8,
             frame_count: 5,
         },
         Jump:
         {
-            imageSrc: './img/character/Jump.png',
+            imageSrc: '/img/character/Jump.png',
             frame_rate: 4,
             frame_count: 15,
         },
         JumpLeft:
         {
-            imageSrc: './img/character/Jump-Left.png',
+            imageSrc: '/img/character/Jump-Left.png',
             frame_rate: 4,
             frame_count: 15,
         },
         Fall:
         {
-            imageSrc: './img/character/Fall.png',
+            imageSrc: '/img/character/Fall.png',
             frame_rate: 4,
             frame_count: 15,
         },
         FallLeft:
         {
-            imageSrc: './img/character/Fall-Left.png',
+            imageSrc: '/img/character/Fall-Left.png',
             frame_rate: 4,
             frame_count: 15,
         }
@@ -164,23 +165,27 @@ const chest = new Sprite(
     {
         position:
         {
-            x:288,
-            y:112,
+            //Supposed location of the chest 
+            //x:288,
+            //y:112,
+            //Testing location:
+            x:0,
+            y:1085,
         },
-        imageSrc: './img/chest/Idle.png',
+        imageSrc: '/img/chest/Idle.png',
         frame_rate: 5,
         frame_count: 10,
         sprite_animation:
         {
             Idle:
             {
-                imageSrc: './img/chest/Idle.png',
+                imageSrc: '/img/chest/Idle.png',
                 frame_rate: 5,
                 frame_count: 10,
             },
             Open:
             {
-                imageSrc: './img/chest/Open.png',
+                imageSrc: '/img/chest/Open.png',
                 frame_rate: 5,
                 frame_count: 10,
             }
@@ -325,6 +330,18 @@ function animate(timestamp)
 }
 
 animate()
+
+/*
+const getFPS = () =>
+  new Promise(resolve =>
+    requestAnimationFrame(t1 =>
+      requestAnimationFrame(t2 => resolve(1000 / (t2 - t1)))
+    )
+  )
+
+// Calling the function to get the FPS
+getFPS().then(fps => console.log(fps));
+*/
 
 //Player movements
 window.addEventListener("keydown",(event)=>
