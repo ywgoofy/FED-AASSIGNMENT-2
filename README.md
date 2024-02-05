@@ -27,6 +27,8 @@ Testing
 Credits
 https://iconduck.com/icons/68200/settings (settings image link)
 https://penzilla.itch.io/hooded-protagonist (Sprite, Main Character)
+https://admurin.itch.io/free-chest-animations (Chest Sprite)
+https://trixelized.itch.io/starstring-fields (Game background tileset)
 https://i.pinimg.com/originals/2c/dd/2b/2cdd2b6c9faa5bef201dd2b6b3d9e861.gif (Main Menu Background Animation)
 Content
 

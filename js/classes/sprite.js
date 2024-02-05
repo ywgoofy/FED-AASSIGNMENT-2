@@ -1,6 +1,6 @@
 //Creating Sprite 
 class Sprite{
-    constructor({position,imageSrc,frame_rate = 1 , frame_count = 30}) //Default framerate = 1 and frame_count = 3
+    constructor({position,imageSrc,frame_rate = 1 , frame_count = 30, sprite_animation = {} , loop}) //Default framerate = 1 and frame_count = 3
     {
         this.position = position;
         this.image = new Image()
@@ -14,11 +14,23 @@ class Sprite{
         this.image.src = imageSrc
         this.frame_rate = frame_rate
         this.current_frame = 0;
+        this.loop = loop
         
+        //Count
+        this.frame = 0 
+        //Speed
+        this.frame_count = frame_count 
 
-        this.frame = 0 //Count
-        this.frame_count = frame_count //Speed
-        
+        this.sprite_animation = sprite_animation
+        if(sprite_animation != {})
+        {
+            for(let i in this.sprite_animation)
+            {
+                const image = new Image()
+                image.src = this.sprite_animation[i].imageSrc
+                this.sprite_animation[i].image = image
+            }
+        }
     }
 
     draw()
@@ -41,6 +53,12 @@ class Sprite{
         }
 
         c.drawImage(this.image, cropbox.position.x, cropbox.position.y, cropbox.width, cropbox.height, this.position.x, this.position.y,this.width,this.height)
+
+        /*
+        c.fillStyle = 'rgba(0,0,255,0.2)'
+        c.fillRect(this.position.x,this.position.y,this.width,this.height)
+        */
+        
     }
     update()
     {
@@ -56,11 +74,25 @@ class Sprite{
             {
                 this.current_frame ++;
             }
-            else
+            else if(this.loop)
             {
                 this.current_frame = 0;
             }
         }
         
     }
+    swapSprite(value)
+    {
+        if(this.image === this.sprite_animation[value].image || this.loading)
+        {
+            return
+        }
+        this.image = this.sprite_animation[value].image
+        this.frame_rate = this.sprite_animation[value].frame_rate 
+        this.frame_count = this.sprite_animation[value].frame_count
+        this.current_frame = 0
+    }
+
+    
+    
 }

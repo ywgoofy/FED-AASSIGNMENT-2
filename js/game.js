@@ -1,3 +1,6 @@
+
+
+
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d")
 
@@ -18,7 +21,7 @@ const scaledcanvas =  {
 
 }
 //Gravity
-const gravity = 0.5;
+let gravity = 0.5;
 
 
 
@@ -83,13 +86,15 @@ const background = new Sprite(
             y:0,
         },
         //imageSrc:'./img/Background.png'
-        imageSrc : './img/Map.png'
+        //imageSrc : './img/Map.png'
+        imageSrc: '/img/Map.png'
     }
 )
 //Height of the background
 const background_height = 72*16
 
 //Creating of player 
+//let player_velocity_x =2.5
 const player = new Player({
     position:
     {
@@ -98,63 +103,96 @@ const player = new Player({
     },
     collisionblocks : collisionblocks,
     platformcollisionblocks: platform_collisionblocks,
-    imageSrc: './img/character/Idle.png',
+    imageSrc: '/img/character/Idle.png',
     frame_rate: 2,
     sprite_animation:
     {
         Idle:
         {
-            imageSrc: './img/character/Idle.png',
+            imageSrc: '/img/character/Idle.png',
             frame_rate: 2,
             frame_count: 25,
         },
         IdleLeft:
         {
-            imageSrc: './img/character/Idle-Left.png',
+            imageSrc: '/img/character/Idle-Left.png',
             frame_rate: 2,
             frame_count: 25,
         },
         Run:
         {
-            imageSrc: './img/character/Running.png',
+            imageSrc: '/img/character/Running.png',
             frame_rate: 8,
             frame_count: 5,
         },
         RunLeft:
         {
-            imageSrc: './img/character/Running-Left.png',
+            imageSrc: '/img/character/Running-Left.png',
             frame_rate: 8,
             frame_count: 5,
         },
         Jump:
         {
-            imageSrc: './img/character/Jump.png',
+            imageSrc: '/img/character/Jump.png',
             frame_rate: 4,
             frame_count: 15,
         },
         JumpLeft:
         {
-            imageSrc: './img/character/Jump-Left.png',
+            imageSrc: '/img/character/Jump-Left.png',
             frame_rate: 4,
             frame_count: 15,
         },
         Fall:
         {
-            imageSrc: './img/character/Fall.png',
+            imageSrc: '/img/character/Fall.png',
             frame_rate: 4,
             frame_count: 15,
         },
         FallLeft:
         {
-            imageSrc: './img/character/Fall-Left.png',
+            imageSrc: '/img/character/Fall-Left.png',
             frame_rate: 4,
             frame_count: 15,
         }
-    }
+    },
+    loop: true,
     
 })
 
-
+//Creating of chest
+const chest = new Sprite(
+    {
+        position:
+        {
+            //Supposed location of the chest 
+            //x:288,
+            //y:112,
+            //Testing location:
+            x:0,
+            y:1085,
+        },
+        imageSrc: '/img/chest/Idle.png',
+        frame_rate: 5,
+        frame_count: 10,
+        sprite_animation:
+        {
+            Idle:
+            {
+                imageSrc: '/img/chest/Idle.png',
+                frame_rate: 5,
+                frame_count: 10,
+            },
+            Open:
+            {
+                imageSrc: '/img/chest/Open.png',
+                frame_rate: 5,
+                frame_count: 10,
+            }
+        },
+        loop: false,
+    }
+)
 
 
 //Checking for keys
@@ -180,19 +218,47 @@ const camera =
     },
 }
 
-function animate()
-{
-    window.requestAnimationFrame(animate);
-    c.fillStyle = "white"
-    c.fillRect(0,0,canvas.width,canvas.height);
 
+const perfectFrameTime = 1000 / 60;
+let deltaTime = 0;
+let lastTimestamp = 0;
+let count = 1
+function start() {
+    requestAnimationFrame(update);
+}
+let player_velocity_x = 2.5
+let player_velocity_y = 8
+
+function animate(timestamp)
+{
+    
+    window.requestAnimationFrame(animate)
+    //Testing
+    deltaTime = (timestamp - lastTimestamp) / perfectFrameTime;
+    lastTimestamp = timestamp;
+
+    if(deltaTime <0.5)
+    {
+        player_velocity_x = 2.5
+        player_velocity_y = 7
+        player_velocity_x = player_velocity_x*(deltaTime+0.2)
+        player_velocity_y = player_velocity_y*(deltaTime+0.3)
+        gravity = 0.25
+        //console.log(player_velocity_x)
+        //console.log(player.velocity.y)
+    }
+    count++
+    //Testing
+    c.fillStyle = "white"   
+    c.fillRect(0,0,canvas.width,canvas.height);
     //Scaling the background up by 4 times
     c.save();
     c.scale(4,4)
     c.translate(camera.position.x,camera.position.y)
     background.update();
-    //Collision blocks
 
+
+    //Collision blocks/ Displaying the rectangles of the collision blocks
     //For testing
     /*collisionblocks.forEach((collisionBlock)=>{
         collisionBlock.update()
@@ -205,20 +271,21 @@ function animate()
     })*/
 
     player.update();
+    chest.update();
+    //IfColliding()
     player.velocity.x = 0
-    
     if(keys.d.pressed)
     {
         player.previous_direction = 'right'
         player.swapSprite("Run")
-        player.velocity.x = 2.5;
+        player.velocity.x = player_velocity_x;
         player.when_to_MoveCameraToLeft({camera,canvas,background})
     }
     else if(keys.a.pressed)
     {
         player.previous_direction = 'left'
         player.swapSprite('RunLeft')
-        player.velocity.x = -2.5;
+        player.velocity.x = -player_velocity_x;
         player.when_to_MoveCameraToRight({camera})
     }
     else if(player.AtFloor) //Not jumping/falling, not moving left and right
@@ -259,21 +326,22 @@ function animate()
         }
         
     }
-
-
-
     c.restore()
-
-    
-
-    //this statement forces the player to not be able to jump until they landed
-    /*if(player.position.y + player.height + player.velocity.y>= canvas.height)
-    {
-        keys.w.pressed = false;
-    }*/
 }
 
 animate()
+
+/*
+const getFPS = () =>
+  new Promise(resolve =>
+    requestAnimationFrame(t1 =>
+      requestAnimationFrame(t2 => resolve(1000 / (t2 - t1)))
+    )
+  )
+
+// Calling the function to get the FPS
+getFPS().then(fps => console.log(fps));
+*/
 
 //Player movements
 window.addEventListener("keydown",(event)=>
@@ -288,21 +356,27 @@ window.addEventListener("keydown",(event)=>
             keys.a.pressed = true            
             break;
         case "w":
+            if(IfColliding())
+            {
+                chest.swapSprite('Open');
+                //window.setTimeout()
+            }
             //player.velocity.y = -8;
-            if(player.velocity.y > 0) //If player is falling, they won't be able to jump
+            else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
             {
                 player.AtFloor = false;
             }
             else if(player.AtFloor)
             {
-                player.velocity.y = -8;
+                player.velocity.y = -(player_velocity_y);
+
                 player.AtFloor = false;
             }
-            
             break;
-
     }
 })
+
+
 
 window.addEventListener("keyup",(event)=>
 {
@@ -325,6 +399,23 @@ function ResizeCanvas()
     const height = window.innerHeight *0.95;
     canvas.width = width;
     canvas.height = height;
+}
+
+function IfColliding()
+{
+    //If the bottom of the player is touching the top of the collision block
+    let bottom_touching_block = player.hitbox.position.y + player.hitbox.height >= chest.position.y
+    //If the top of the player is touching the bottom of the collision block
+    let top_touching_block = player.hitbox.position.y <= chest.position.y + chest.height
+
+    //If the left side of the player is touching the right side of the collision block
+    let left_touching_block = player.hitbox.position.x <= chest.position.x + chest.width
+
+    //If the right side of the player is touching the left side of the collision block
+    let right_touching_block = player.hitbox.position.x + player.hitbox.width >= chest.position.x
+
+    return (bottom_touching_block && top_touching_block && left_touching_block && right_touching_block)
+    
 }
 
 

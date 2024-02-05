@@ -1,8 +1,8 @@
 //Creating player class
 class Player extends Sprite {
-    constructor({position, collisionblocks, platformcollisionblocks, imageSrc, frame_rate, sprite_animation})
+    constructor({position, collisionblocks, platformcollisionblocks, imageSrc, frame_rate, sprite_animation, loop})
     {
-        super({imageSrc , frame_rate})
+        super({imageSrc , frame_rate, loop})
         this.Collisionblocks = collisionblocks
         this.PlatformCollisionblocks = platformcollisionblocks
         this.position = position
@@ -242,7 +242,7 @@ class Player extends Sprite {
 
     gravity(){
         //Accelerating 
-        if(this.velocity.y < 4.5) //Max acceleration = 4.5
+        if(this.velocity.y < 4) //Max acceleration = 4.5
         {
             this.velocity.y += gravity; 
         }
