@@ -61,3 +61,9 @@ body {
 .menu-buttons button:hover {
     background-color: transparent;
 }
+
+.win_screen_buttons
+{
+    position:relative;
+    margin-top:45%;
+}

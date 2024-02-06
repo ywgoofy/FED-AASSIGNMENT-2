@@ -8,6 +8,8 @@ const c = canvas.getContext("2d")
 canvas.width = 1024;
 canvas.height = 576;
 
+
+
 ResizeCanvas();
 window.addEventListener('resize', ()=>
 {
@@ -243,7 +245,7 @@ function animate(timestamp)
         player_velocity_y = 7
         player_velocity_x = player_velocity_x*(deltaTime+0.2)
         player_velocity_y = player_velocity_y*(deltaTime+0.3)
-        gravity = 0.25
+        gravity = 0.20
         //console.log(player_velocity_x)
         //console.log(player.velocity.y)
     }
@@ -331,17 +333,8 @@ function animate(timestamp)
 
 animate()
 
-/*
-const getFPS = () =>
-  new Promise(resolve =>
-    requestAnimationFrame(t1 =>
-      requestAnimationFrame(t2 => resolve(1000 / (t2 - t1)))
-    )
-  )
 
-// Calling the function to get the FPS
-getFPS().then(fps => console.log(fps));
-*/
+
 
 //Player movements
 window.addEventListener("keydown",(event)=>
@@ -359,7 +352,11 @@ window.addEventListener("keydown",(event)=>
             if(IfColliding())
             {
                 chest.swapSprite('Open');
-                //window.setTimeout()
+                window.setTimeout(()=>
+                {
+                    window.location.href = '/html/win.html'
+                },1500)
+                
             }
             //player.velocity.y = -8;
             else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
