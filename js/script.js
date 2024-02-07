@@ -223,15 +223,27 @@ if(window.location.pathname === "/html/leaderboard.html")
 }
 
 
-
 // Main Menu Page
-//If user is in the MainMenu page
-if(window.location.pathname === "/html/MainMenu.html")
-{
+// If the user is on the MainMenu page
+if (window.location.pathname === "/html/MainMenu.html") {
     document.addEventListener("DOMContentLoaded", function () {
+
+        const openbtn = document.getElementById("openControls");
+        const closebtn = document.getElementById("closeControls");
+        const popup = document.getElementById("popup");
+
+        openbtn.addEventListener("click", () => {
+            popup.classList.add("open");
+        });
+
+        closebtn.addEventListener("click", () => {
+            popup.classList.remove("open");
+        });
+
         // Get all buttons
         var playButton = document.getElementById("play-button");
-        var optionsButton = document.getElementById("options-button");
+        var controlsButton = document.getElementById("controls-button");
+        var leaderboardButton = document.getElementById("leaderboard-button");
         var loginButton = document.getElementById("login-button");
         var signupButton = document.getElementById("signup-button");
 
@@ -244,12 +256,20 @@ if(window.location.pathname === "/html/MainMenu.html")
             resetButtonSize(playButton);
         });
 
-        optionsButton.addEventListener("mouseover", function () {
-            enlargeButton(optionsButton);
+        controlsButton.addEventListener("mouseover", function () {
+            enlargeButton(controlsButton);
         });
 
-        optionsButton.addEventListener("mouseout", function () {
-            resetButtonSize(optionsButton);
+        controlsButton.addEventListener("mouseout", function () {
+            resetButtonSize(controlsButton);
+        });
+
+        leaderboardButton.addEventListener("mouseover", function () {
+            enlargeButton(leaderboardButton);
+        });
+
+        leaderboardButton.addEventListener("mouseout", function () {
+            resetButtonSize(leaderboardButton);
         });
 
         loginButton.addEventListener("mouseover", function () {
@@ -268,20 +288,14 @@ if(window.location.pathname === "/html/MainMenu.html")
             resetButtonSize(signupButton);
         });
 
-
-        //Stop player from playing the game if they have not logged in
-        playButton.addEventListener("click", function()
-        {
-            if(localStorage.getItem('Login') === false)
-            {
-                window.alert('Please log in first.')
+        // Stop the player from playing the game if they have not logged in
+        playButton.addEventListener("click", function () {
+            if (localStorage.getItem('Login') === false) {
+                window.alert('Please log in first.');
+            } else {
+                window.location.href = '/html/game.html';
             }
-            else
-            {
-                window.location.href = '/html/game.html'
-            }
-
-        })
+        });
     });
 
     // Function to enlarge the button
@@ -295,6 +309,7 @@ if(window.location.pathname === "/html/MainMenu.html")
     }
 }
 
+
 //Win Page
 document.addEventListener("DOMContentLoaded", function () {
     // Check if the current page is the Win Page
@@ -307,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
             renderer: "svg",
             loop: true,
             autoplay: true,
-            path: "C:\\Users\\tanye\\OneDrive - Ngee Ann Polytechnic\\SEM 2\\FED\\FED ASG 2\\FED-AASSIGNMENT-2-\\img\\LottieAnimations\\TrophyLottie.json", // Replace with the correct path to your Lottie animation JSON file
+            path: "\\img\\LottieAnimations\\TrophyLottie.json", // Replace with the correct path to your Lottie animation JSON file
         });
     }
 });

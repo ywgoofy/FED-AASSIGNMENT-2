@@ -1,4 +1,4 @@
-/* Styles for the Main Menu*/
+/* Styles for the Main Menu */
 body {
     margin: 0;
     /*background-color: #000;*/ /* Optional: Set a base background color */
@@ -61,10 +61,10 @@ body {
 
 .menu-buttons button:hover {
     background-color: transparent;
+    transform: translateY(-10px); /* Move the button up by 10 pixels on hover */
 }
 
-.win_main
-{
+.win_main {
     text-align: center;
 }
 
@@ -88,11 +88,10 @@ body {
     z-index: -1; /* Send the image to the background */
 }
 
-
 .container {
     position: relative;
-  }
-  
+}
+
 .lottie-container {
     position: absolute;
     top: 50%;
@@ -136,7 +135,7 @@ body {
     display: inline-block; /* Allow the button to shrink to fit its contents */
     margin-right: 10px; /* Adjust margin between buttons */
     font-size: 30px;
-    transition: border-color 0.3s ease; /* Add transition for smoother border color change */
+    transition: border-color 0.3s ease, transform 0.3s ease; /* Add transition for smoother border color change and transform effect */
 }
 
 .win_button:hover {
@@ -146,4 +145,99 @@ body {
 
 .main_menu_button:hover {
     border-color: darkred; /* Change border color to dark red on hover */
+}
+
+/* Styles for Leaderboard Page */
+.Leaderboard-Page img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Send the image to the background */
+}
+
+body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Set body height to 100% */
+}
+
+.container {
+    font-family: 'Pixelify Sans', sans-serif; /* Use the specified font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+    color: white;
+}
+
+#contact-list {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 100%; /* Set table height to 100% */
+}
+
+#contact-list th, #contact-list td {
+    color: white;
+}
+
+#contact-list th {
+    background-color: #333;
+}
+
+
+/* Styles for LogIn Page */
+.LogIn-Page img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Send the image to the background */
+}
+
+
+/* Styles for the Main Menu controls pop up*/
+#popup {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls-inner {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+    font-family: 'Pixelify Sans', sans-serif; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#popup.open {
+    opacity: 1;
+    z-index: 999;
+}
+
+/* Style for the image within the modal */
+.controls-inner img {
+    max-width: 60%; /* Set maximum width to 60% of the modal-inner */
+    max-height: 60%; /* Set maximum height to 60% of the modal-inner */
+    display: block; /* Remove extra space below the image */
+    margin: auto; /* Center the image horizontally */
 }

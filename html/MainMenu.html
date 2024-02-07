@@ -20,17 +20,36 @@
         <div class="menu-buttons">
             <h1>Don't Fall</h1>
             <div class="button-container">
-                <a href= '' id = 'play_reference'></a>
+                <a href= "game.html"></a>
                     <button id="play-button">Play</button>
                 </a>              
-                <button id="options-button">Options</button>               
+                <button id="openControls">Controls</button>
+
+                <a href="leaderboard.html">
+                    <button id="leaderboard-button">Leaderboard</button>
+                </a> 
+               
             </div>
-            <button id="login-button">Log In</button>
+            <a href = "LogIn.html">
+                <button id="login-button">Log In</button>
+            </a>
             <a href="SignUp.html">
                 <button id="signup-button">Sign Up</button>
             </a>           
         </div>
     </div>
+
+    <!-- Popup Section -->
+    <div class="popup" id="popup">
+        <div class="controls-inner">
+            <h2>Controls</h2>
+            <p>
+                <img src="/img/EditedControlsImage.jpg" alt="Default Key Binds">
+            </p>
+            <button id="closeControls">Close</button>
+        </div>
+    </div>
+
     <script src="/js/script.js"></script>
 </body>
 </html>
