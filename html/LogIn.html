@@ -6,33 +6,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
    crossorigin="anonymous">
         <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <title>FED Assignment2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Protest+Riot&family=Rubik+Glitch+Pop&display=swap" rel="stylesheet">
+    
+    <title>Log In Page</title>
 </head>
 <body>
     <div class="LogIn-Page">
         <img src="/img/LogInBackgroundAnimation.gif" alt="LogIn Background">
-    </div>
-    <form id = "log_in_form">
+
+        <form id = "log_in_form">
         
-        <div class="form-group">
-        <label for="email_log_in">Email address</label>
-        <input type="email" class="form-control"
-        id="email_log_in" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text textmuted">We'll never share your email with anyone 
-        else.</small>
-        </div>
-        <div class="form-group">
-        <label for="password_log_in">Password</label>
-        <input type="password" class="form-control"
-        id="password_log_in">
-        </div>
-        <button type="submit" class="btn primary" id = "login_button">Log In</button>
-        <button type="submit" class="btn primary" id = "check_user">Check User</button>
-            
-    </form>
+            <div class="form-group">
+                <label for="email_log_in">Email address</label>
+                <input type="email" class="form-control" id="email_log_in" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password_log_in">Password</label>
+                <input type="password" class="form-control" id="password_log_in" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary log-button" id="login_button">Log In</button>
+            <button type="submit" class="btn btn-primary log-button" id="check_user">Check User</button>
+                
+        </form>
+    </div>
+    
     
     <a href="MainMenu.html">
-        <button id="back">Back</button>
+        <button class="back-button">Back</button>
     </a>
 
     <script src = "/js/script.js"></script>

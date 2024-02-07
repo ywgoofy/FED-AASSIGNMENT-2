@@ -34,6 +34,8 @@ https://i.pinimg.com/originals/a0/ca/f1/a0caf1d530dd5bc3302e6053921c7281.gif (Wi
 https://lottie.host/efb2bbe0-50b8-4eea-b98d-3d6a674c4e8a/zgydVvm3it.json (Lottie Trophy Animation)
 https://www.deviantart.com/forheksed/art/countryside-898779255 (Leaderboard Background Image)
 https://stock.adobe.com/sg/images/id/296615597 (Controls Image)
+https://i.pinimg.com/originals/52/5f/c0/525fc07e5485ae167416b179bbbdf6b5.gif (LogIn Background Animation)
+https://i.pinimg.com/originals/b2/58/85/b258854e249c5d4673a5938b90b6bbf5.gif (SignUp Background Animation)
 
 Content
 

@@ -135,7 +135,7 @@ body {
     display: inline-block; /* Allow the button to shrink to fit its contents */
     margin-right: 10px; /* Adjust margin between buttons */
     font-size: 30px;
-    transition: border-color 0.3s ease, transform 0.3s ease; /* Add transition for smoother border color change and transform effect */
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
 }
 
 .win_button:hover {
@@ -187,6 +187,11 @@ body {
 
 
 /* Styles for LogIn Page */
+.LogIn-Page {
+    margin-top: 20px;
+    margin-left: 20px; /* Add margin to the left side */
+}
+
 .LogIn-Page img {
     position: absolute;
     top: 0;
@@ -197,8 +202,84 @@ body {
     z-index: -1; /* Send the image to the background */
 }
 
+/* Adjust text box lengths */
+.form-group {
+    width: 50%; /* Set the width to 50% */
+    font-family: 'Pixelify Sans', 'sans-serif';
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+    color: rgb(230, 218, 52);
+}
+
+.log-button {
+    background-color: #4CAF50; /* Set the background color */
+    color: white; /* Set the text color */
+    padding: 5px 15px; /* Set padding for the button */
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    font-family: 'Pixelify Sans', sans-serif; /* Set the font-family */
+    font-size: 16px; /* Set the font size */
+    margin-right: 10px; /* Add margin for spacing between buttons */
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+}
+
+.log-button:hover {
+    background-color: #45a049; /* Change background color on hover */
+    transform: translateY(-5px); /* Move the button up by 5 pixels on hover */
+}
+
+/*Styles for Sign Up Page*/
+
+.SignUp-Page {
+    margin-top: 20px;
+    margin-left: 200px; /* Add margin to the left side */
+}
+    
+
+.SignUp-Page img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Send the image to the background */
+}
+
+/* Adjust text box lengths */
+.SignUp-Page .form-group {
+    width: 50%; /* Set the width to 50% */
+    font-family: 'Pixelify Sans', 'sans-serif';
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+    color: rgb(189, 27, 27);
+}
+
+.signup-button {
+    background-color: #4CAF50; /* Set the background color */
+    color: white; /* Set the text color */
+    padding: 5px 15px; /* Set padding for the button */
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    font-family: 'Pixelify Sans', sans-serif; /* Set the font-family */
+    font-size: 16px; /* Set the font size */
+    margin-right: 10px; /* Add margin for spacing between buttons */
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+}
+
+.signup-button:hover {
+    background-color: #45a049; /* Change background color on hover */
+    transform: translateY(-5px); /* Move the button up by 5 pixels on hover */
+}
+
 
 /* Styles for the Main Menu controls pop up*/
+.images-container {
+    display: flex;
+    justify-content: space-around; /* Adjust spacing between images */
+    margin-top: 20px; /* Add margin between images and button */
+}
+
 #popup {
     background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
     opacity: 0;
@@ -241,3 +322,42 @@ body {
     display: block; /* Remove extra space below the image */
     margin: auto; /* Center the image horizontally */
 }
+
+.closeControlsButton {
+    background-color: #333;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 18px;    
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 10px; /* Add margin to move the button slightly lower */
+}
+
+.closeControlsButton:hover {
+    background-color: #3e3e3e;
+}
+
+
+/* Common Styles for Back Button */
+.back-button {
+    position: fixed; /* Fixed position to keep it at the bottom left */
+    bottom: 20px; /* Adjust the distance from the bottom */
+    left: 20px; /* Adjust the distance from the left */
+    background-color: #333; /* Set the background color */
+    color: white; /* Set the text color */
+    padding: 5px 15px; /* Set padding for the button */
+    border: none; /* Remove the border */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    font-family: 'Pixelify Sans', sans-serif; /* Set the font-family */
+    font-size: 18px; /* Set the font size */
+    transition: background-color 0.2s ease-in-out; /* Add a smooth transition effect */
+}
+
+.back-button:hover {
+    background-color: #414040; /* Change background color on hover */
+}
+

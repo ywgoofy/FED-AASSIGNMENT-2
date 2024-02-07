@@ -9,12 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Honk&family=Workbench&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Protest+Riot&family=Rubik+Glitch+Pop&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Game</title>
+    <title>Main Menu</title>
 </head>
 <body>
+    <div id="loading-screen-container"></div>
     <div class="main-menu">
         <img src="/img/MainMenuBackgroundAnimation.gif" alt="Game Background">
         <div class="menu-buttons">
@@ -43,13 +48,15 @@
     <div class="popup" id="popup">
         <div class="controls-inner">
             <h2>Controls</h2>
-            <p>
-                <img src="/img/EditedControlsImage.jpg" alt="Default Key Binds">
-            </p>
-            <button id="closeControls">Close</button>
+            <div class="images-container">
+                <img src="/img/EditedControlsImage1.jpg" alt="Desktop Key Binds">
+                <img src="/img/EditedControlsImage2.jpg" alt="Mobile buttons">
+            </div>
+            <button class="closeControlsButton" id="closeControls">Close</button>
         </div>
     </div>
 
     <script src="/js/script.js"></script>
+    <script src="/js/test.js"></script>
 </body>
 </html>
