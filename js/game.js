@@ -223,6 +223,9 @@ const camera =
 }
 
 
+const leftButton = document.getElementById('Left-button')
+const rightButton = document.getElementById('Right-button')
+const upButton = document.getElementById('Up-button')
 const perfectFrameTime = 1000 / 60;
 let deltaTime = 0;
 let lastTimestamp = 0;
@@ -237,7 +240,6 @@ function animate(timestamp)
 {
     
     window.requestAnimationFrame(animate)
-    //Testing
     deltaTime = (timestamp - lastTimestamp) / perfectFrameTime;
     lastTimestamp = timestamp;
 
@@ -252,7 +254,7 @@ function animate(timestamp)
         //console.log(player.velocity.y)
     }
     count++
-    //Testing
+
     c.fillStyle = "white"   
     c.fillRect(0,0,canvas.width,canvas.height);
     //Scaling the background up by 4 times
@@ -464,6 +466,126 @@ window.addEventListener("keyup",(event)=>
             break;
 
     }
+})
+
+//Mobile controls
+rightButton.addEventListener('touchstart',(e) =>
+{
+    //e.preventDefault()
+    keys.d.pressed = true;
+})
+rightButton.addEventListener('touchend',(e)=>
+{
+    //e.preventDefault()
+    keys.d.pressed = false;
+})
+
+leftButton.addEventListener('touchstart',(e)=>
+{
+    //e.preventDefault()
+    keys.a.pressed = true;
+})
+leftButton.addEventListener('touchend',(e)=>
+{
+   // e.preventDefault()
+    keys.a.pressed = false;
+})
+upButton.addEventListener('touchstart',(e)=>
+{
+    //e.preventDefault()
+    if(IfColliding())
+            {
+                chest.swapSprite('Open');
+                session_user = localStorage.getItem('Session_User')
+                session_user = session_user.split(',')
+                console.log(session_user)
+                let email = session_user[0]
+                let password = session_user[2]
+                let name = session_user[1]
+                let userid = session_user[3] 
+                //Updating the count of chest opened
+                const APIKEY = "65b1ebaf7307823ba86708aa"
+                let settings_Get =
+                {
+                    method: "GET", //[cher] we will use GET to retrieve info
+                    headers: 
+                    {
+                        "Content-Type": "application/json",
+                        "x-apikey": APIKEY,
+                        "Cache-Control": "no-cache"
+                    },
+                }
+
+                fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+                .then(res => {
+
+                    if(!res.ok)
+                    {
+                        throw Error("Error occured")
+                    }
+                    return res.json()
+                    
+                    })
+                .then(data =>
+                    {
+                        for(let i = 0; i<data.length; i++)
+                        {
+                            if(data[i]._id === userid)
+                            {
+                                let settings_Put =
+                                {
+                                    method: "PUT", 
+                                    headers: 
+                                    {
+                                        "Content-Type": "application/json",
+                                        "x-apikey": APIKEY,
+                                        "Cache-Control": "no-cache"
+                                    },
+                                    body:JSON.stringify(
+                                        {
+                                            Email: data[i].Email,
+                                            Password: data[i].Password,
+                                            Name: data[i].Name,
+                                            ChestOpened: Number(data[i].ChestOpened)+1
+                                        }
+                                    )
+                                }
+                                fetch(`https://fedassignment2-e5a1.restdb.io/rest/userinfo/${userid}`,settings_Put)
+                                .then(res => {
+
+                                    /*if(!res.ok)
+                                    {
+                                        throw Error("Error occured")
+                                    }*/
+                                    return res.json()
+                                    
+                                    })
+                                .then(data =>
+                                    {
+                                        console.log(data)
+                                    })
+                            }
+                        }
+                            
+                        
+                    })
+                
+                window.setTimeout(()=>
+                {
+                    window.location.href = '/html/win.html'
+                },5000)
+            }
+            //player.velocity.y = -8;
+            else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
+            {
+                player.AtFloor = false;
+            }
+            else if(player.AtFloor)
+            {
+                player.velocity.y = -(player_velocity_y);
+
+                player.AtFloor = false;
+            }
 })
 
 function ResizeCanvas()

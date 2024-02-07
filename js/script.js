@@ -1,65 +1,13 @@
-// //Database for the users
 
-// const APIKEY = "65b1ebaf7307823ba86708aa"
-// // Settings for getting the user info
-// let settings_Get =
-//  {
-//     method: "GET", //[cher] we will use GET to retrieve info
-//     headers: 
-//     {
-//         "Content-Type": "application/json",
-//         "x-apikey": APIKEY,
-//         "Cache-Control": "no-cache"
-//     },
-// }
-
-// //Settings for posting the user info, in the future will use dom to add user info dynamically
-// let settings_Post = {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "x-apikey": APIKEY,
-//             "Cache-Control": "no-cache"
-//         },
-//         //TESTING MANUALLY ADDING DATA INTO DATABASE
-//         body: JSON.stringify({
-//             Email: "hello3@gmail.com",
-//             Password: " 78394",
-//             Name: "helloo"
-    
-//         })
-//     }
-
-
-//  //Posting the user info to the database   
-// fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Post)
-// .then(res => {
-//     if(!res.ok)
-//     {
-//         throw Error("Error occured")
-//     }
-//     res.json()
-    
-//     })
-// .then(data => {
-//     console.log(data)
-// })
-
-
-// //Getting the info from the database
-// fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo  ", settings_Get)
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(data)
-//     })
 
 //If user is in the SignUp page
 if(window.location.pathname === '/html/SignUp.html')
 {
 
     document.addEventListener("DOMContentLoaded",function(){
-        const APIKEY = "65b1ebaf7307823ba86708aa"
-        //Submit
+
+    const APIKEY = "65b1ebaf7307823ba86708aa"
+    //Submit
     let settings_Get =
     {
         method: "GET", //[cher] we will use GET to retrieve info
@@ -141,7 +89,10 @@ if(window.location.pathname === '/html/SignUp.html')
 }
 
 //Log in
-
+if(localStorage.getItem('Login') === true)
+{
+    localStorage.setItem('Login',false)
+}
 if(window.location.pathname === "/html/LogIn.html")
 {
     
@@ -192,6 +143,8 @@ if(window.location.pathname === "/html/LogIn.html")
                         window.alert("LogIn Successful")
                         localStorage.setItem('Session_User',[data[i].Email, data[i].Name, data[i].Password,data[i]._id])
                         login_success = true
+                        login = true;
+                        localStorage.setItem('Login',true)
                     }
                 }
             }
@@ -314,6 +267,21 @@ if(window.location.pathname === "/html/MainMenu.html")
         signupButton.addEventListener("mouseout", function () {
             resetButtonSize(signupButton);
         });
+
+
+        //Stop player from playing the game if they have not logged in
+        playButton.addEventListener("click", function()
+        {
+            if(localStorage.getItem('Login') === false)
+            {
+                window.alert('Please log in first.')
+            }
+            else
+            {
+                window.location.href = '/html/game.html'
+            }
+
+        })
     });
 
     // Function to enlarge the button

@@ -2,7 +2,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FED Assignment2</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <title>Game</title>
         <style>
                 body{
                     background: black;
@@ -13,6 +14,18 @@
     <body>
 
         <canvas></canvas>
+        <div id = "hidden_buttons">
+            <div id="buttons-container">
+                <div id = 'button-left-right'>
+                    <button id="Left-button">Left</button>
+                    <button id="Right-button">Right</button>
+                </div>
+                <div id = 'button-up'>
+                    <button id="Up-button">Up</button>
+                </div>
+            </div>
+            
+        </div>
         <script src = "/js/classes/collisionblock.js"></script>
         <script src = "/js/classes/sprite.js"></script>
         <script src = "/js/classes/player.js"></script>    
