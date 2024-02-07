@@ -102,7 +102,7 @@ const player = new Player({
     position:
     {
         x:0,
-        y:1050
+        y:950
     },
     collisionblocks : collisionblocks,
     platformcollisionblocks: platform_collisionblocks,
@@ -170,11 +170,11 @@ const chest = new Sprite(
         position:
         {
             //Supposed location of the chest 
-            //x:288,
-            //y:112,
+            x:288,
+            y:112,
             //Testing location:
-            x:0,
-            y:1085,
+            //x:0,
+            //y:1085,
         },
         imageSrc: '/img/chest/Idle.png',
         frame_rate: 5,
@@ -355,11 +355,84 @@ window.addEventListener("keydown",(event)=>
             if(IfColliding())
             {
                 chest.swapSprite('Open');
+                session_user = localStorage.getItem('Session_User')
+                session_user = session_user.split(',')
+                console.log(session_user)
+                let email = session_user[0]
+                let password = session_user[2]
+                let name = session_user[1]
+                let userid = session_user[3] 
+                //Updating the count of chest opened
+                const APIKEY = "65b1ebaf7307823ba86708aa"
+                let settings_Get =
+                {
+                    method: "GET", //[cher] we will use GET to retrieve info
+                    headers: 
+                    {
+                        "Content-Type": "application/json",
+                        "x-apikey": APIKEY,
+                        "Cache-Control": "no-cache"
+                    },
+                }
+
+                fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+                .then(res => {
+
+                    if(!res.ok)
+                    {
+                        throw Error("Error occured")
+                    }
+                    return res.json()
+                    
+                    })
+                .then(data =>
+                    {
+                        for(let i = 0; i<data.length; i++)
+                        {
+                            if(data[i]._id === userid)
+                            {
+                                let settings_Put =
+                                {
+                                    method: "PUT", 
+                                    headers: 
+                                    {
+                                        "Content-Type": "application/json",
+                                        "x-apikey": APIKEY,
+                                        "Cache-Control": "no-cache"
+                                    },
+                                    body:JSON.stringify(
+                                        {
+                                            Email: data[i].Email,
+                                            Password: data[i].Password,
+                                            Name: data[i].Name,
+                                            ChestOpened: Number(data[i].ChestOpened)+1
+                                        }
+                                    )
+                                }
+                                fetch(`https://fedassignment2-e5a1.restdb.io/rest/userinfo/${userid}`,settings_Put)
+                                .then(res => {
+
+                                    /*if(!res.ok)
+                                    {
+                                        throw Error("Error occured")
+                                    }*/
+                                    return res.json()
+                                    
+                                    })
+                                .then(data =>
+                                    {
+                                        console.log(data)
+                                    })
+                            }
+                        }
+                            
+                        
+                    })
+                
                 window.setTimeout(()=>
                 {
                     window.location.href = '/html/win.html'
-                },1500)
-                
+                },5000)
             }
             //player.velocity.y = -8;
             else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
@@ -398,8 +471,12 @@ function ResizeCanvas()
     if(window.innerWidth <600)
     {
         scale_amount = 3;
-        player.camera_box_width = 100
-        return
+        //player.camera_box_width = 100
+        //return
+        if(window.innerWidth<400)
+        {
+            scale_amount = 2;
+        }
     }
     const width = window.innerWidth *0.97;
     const height = window.innerHeight *0.95;

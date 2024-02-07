@@ -110,7 +110,8 @@ if(window.location.pathname === '/html/SignUp.html')
                 body: JSON.stringify({
                     Email: email,
                     Password: password,
-                    Name: name
+                    Name: name,
+                    ChestOpened: 0
             
                     })
                 }
@@ -143,6 +144,7 @@ if(window.location.pathname === '/html/SignUp.html')
 
 if(window.location.pathname === "/html/LogIn.html")
 {
+    
     document.addEventListener("DOMContentLoaded",function(){
         const APIKEY = "65b1ebaf7307823ba86708aa"
         //Submit
@@ -156,75 +158,116 @@ if(window.location.pathname === "/html/LogIn.html")
             "Cache-Control": "no-cache"
         },
     }
+    let session_user = '';
+    document.getElementById("login_button").addEventListener("click",function(e){
+        e.preventDefault();
+        
+        let email = document.getElementById("email_log_in").value;
+        let password = document.getElementById("password_log_in").value;
 
-    
-        document.getElementById("login_button").addEventListener("click",function(e){
-            e.preventDefault();
+
+        
+        document.getElementById("login_button").disabled = true;
+        document.getElementById("log_in_form").reset();
+        
+        //localStorage.setItem('login',false);
+        fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+        .then(res => {
+
+            if(!res.ok)
+            {
+                throw Error("Error occured")
+            }
+            return res.json()
             
-            let email = document.getElementById("email_log_in").value;
-            let password = document.getElementById("password_log_in").value;
-
-
-            
-            document.getElementById("login_button").disabled = true;
-            document.getElementById("log_in_form").reset();
-            
-            localStorage.setItem('login',false);
-            fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
-            .then(res => {
-
-                if(!res.ok)
+            })
+        .then(data => {
+            let login_success = false
+            for(let i = 0; i<data.length; i++)
+            {
+                if(email === data[i].Email)
                 {
-                    throw Error("Error occured")
-                }
-                return res.json()
-                
-                })
-            .then(data => {
-                localStorage.setItem('Users',JSON.stringify(data))
-                //localStorage.setItem('Session_User',-1)
-                for(let i = 0; i<data.length; i++)
-                {
-                    if(email === data[i].Email)
+                    if(password === data[i].Password) //If password and email matches the account
                     {
-                        if(password === data[i].Password) //If password and email matches the account
-                        {
-                            window.alert("LogIn Successful")
-                            localStorage.setItem('Session_User',i)
-                            localStorage.setItem('login',true)
-                            return;
-                        }
+                        window.alert("LogIn Successful")
+                        localStorage.setItem('Session_User',[data[i].Email, data[i].Name, data[i].Password,data[i]._id])
+                        login_success = true
                     }
                 }
-                //Else
+            }
+            //Else
+            if(!login_success)
+            {
                 window.alert("LogIn Unsuccessful")
                 document.getElementById("login_button").disabled = false;
-                //console.log('LogIn Unsuccessful')
-            })
-            //let session_user = JSON.parse(localStorage.getItem('Session_user')) 
-            //console.log(session_user)
-            let login_success = localStorage.getItem('login')
-            console.log(login_success)
-            if(login_success)
-            {
-                let session_user_index = localStorage.getItem('Session_User')
-                let data = JSON.parse(localStorage.getItem('Users'))
-                console.log(session_user_index)
-                if(session_user_index != -1)
-                {
-                    console.log(data[session_user_index])
-                }
+                localStorage.setItem('Session_User',null)
             }
             
-            //console.log(data[session_user_index])
+            //console.log('LogIn Unsuccessful')
+        })
 
+        session_user = localStorage.getItem('Session_User')
+        session_user = session_user.split(',')
+        //let data = JSON.parse(localStorage.getItem('Users'))
+        //user = data[session_user_index]
+        console.log(session_user)
             
         })
-        
+        document.getElementById("check_user").addEventListener("click",function(e){
+            e.preventDefault();
+            console.log(session_user[0])
+        })
         
     })
 }
 
+//Testing
+session_user = localStorage.getItem('Session_User')
+        session_user = session_user.split(',')
+        //let data = JSON.parse(localStorage.getItem('Users'))
+        //user = data[session_user_index]
+        console.log(session_user)
+
+
+//LeaderBoard
+if(window.location.pathname === "/html/leaderboard.html")
+{
+    document.addEventListener("DOMContentLoaded",function()
+    {
+        const APIKEY = "65b1ebaf7307823ba86708aa"
+        limit = 5;
+        let settings_Get =
+        {
+            method: "GET", //[cher] we will use GET to retrieve info
+            headers: 
+            {
+                "Content-Type": "application/json",
+                "x-apikey": APIKEY,
+                "Cache-Control": "no-cache"
+            },
+        }
+        fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+        .then(response => response.json())
+        .then(data => {
+            data.sort((a, b) => b.ChestOpened - a.ChestOpened);
+            let content = "";
+            let count = 1;
+
+            for (var i = 0; i < data.length && i < limit; i++) {
+            content = `${content}<tr id='${data[i]._id}'>
+            <td>${count}</td>
+            <td>${data[i].Name}</td>
+            <td>${data[i].Email}</td>
+            <td>${data[i].ChestOpened}
+            `
+            count++;
+            }
+            document.getElementById("contact-list").getElementsByTagName("tbody")[0].innerHTML = content;
+        })
+        
+    })
+    
+}
 
 
 
