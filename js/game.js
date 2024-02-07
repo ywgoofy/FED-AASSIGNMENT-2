@@ -7,8 +7,9 @@ const c = canvas.getContext("2d")
 //Setting the height and width of the canvas
 canvas.width = 1024;
 canvas.height = 576;
+let scale_amount = 4
 
-
+let camera_box_width = 200;
 
 ResizeCanvas();
 window.addEventListener('resize', ()=>
@@ -18,8 +19,8 @@ window.addEventListener('resize', ()=>
 
 //Scaling down our canvas dimensions base on the translated scale on the image
 const scaledcanvas =  {
-    width: canvas.width/4,
-    height: canvas.height/4,
+    width: canvas.width/scale_amount,
+    height: canvas.height/scale_amount,
 
 }
 //Gravity
@@ -159,6 +160,7 @@ const player = new Player({
         }
     },
     loop: true,
+    camera_box_width:camera_box_width,
     
 })
 
@@ -255,7 +257,8 @@ function animate(timestamp)
     c.fillRect(0,0,canvas.width,canvas.height);
     //Scaling the background up by 4 times
     c.save();
-    c.scale(4,4)
+    
+    c.scale(scale_amount,scale_amount)
     c.translate(camera.position.x,camera.position.y)
     background.update();
 
@@ -392,6 +395,12 @@ window.addEventListener("keyup",(event)=>
 
 function ResizeCanvas()
 {
+    if(window.innerWidth <600)
+    {
+        scale_amount = 3;
+        player.camera_box_width = 100
+        return
+    }
     const width = window.innerWidth *0.97;
     const height = window.innerHeight *0.95;
     canvas.width = width;

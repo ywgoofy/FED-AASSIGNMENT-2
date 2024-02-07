@@ -62,8 +62,13 @@ body {
     background-color: transparent;
 }
 
+.win_main
+{
+    text-align: center;
+}
+
 .win_screen_buttons
 {
     position:relative;
-    margin-top:45%;
+    padding-top:45%;
 }
