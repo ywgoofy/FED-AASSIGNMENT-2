@@ -1,6 +1,6 @@
 //Creating player class
 class Player extends Sprite {
-    constructor({position, collisionblocks, platformcollisionblocks, imageSrc, frame_rate, sprite_animation, loop})
+    constructor({position, collisionblocks, platformcollisionblocks, imageSrc, frame_rate, sprite_animation, loop, camera_box_width})
     {
         super({imageSrc , frame_rate, loop})
         this.Collisionblocks = collisionblocks
@@ -25,6 +25,7 @@ class Player extends Sprite {
             height:10,
         } 
 
+        this.camera_box_width = camera_box_width
         this.camera_box = 
         {
             position:
@@ -32,7 +33,7 @@ class Player extends Sprite {
                 x:this.position.x,
                 y:this.position.y,
             },
-            width: 200,
+            width: camera_box_width,
             height:80,
         }
 
@@ -46,6 +47,7 @@ class Player extends Sprite {
             image.src = this.sprite_animation[i].imageSrc
             this.sprite_animation[i].image = image
         }
+        
     }
     /*draw()
     {
@@ -62,12 +64,12 @@ class Player extends Sprite {
         this.update_HitBox()
         this.update_Camerabox()
 
-        /*
+        
         //Camera testing
         c.fillStyle = 'rgba(0,0,255,0.2)'
         c.fillRect(this.camera_box.position.x,this.camera_box.position.y,this.camera_box.width,this.camera_box.height)
 
-        
+        /*
         //This rect represents the hit box
         c.fillStyle = 'rgba(0,0,255,0.2)'
         c.fillRect(this.hitbox.position.x,this.hitbox.position.y,this.hitbox.width,this.hitbox.height)
@@ -114,7 +116,7 @@ class Player extends Sprite {
             return
         }
 
-        if(RightSide_of_Camera >= canvas.width/4 + Math.abs(camera.position.x)) //Dividing by 4 as it is scaled by 4 times
+        if(RightSide_of_Camera >= canvas.width/scale_amount + Math.abs(camera.position.x)) //Dividing by 4 as it is scaled by 4 times
         {
             //Moving the camera to the left based on the velocity of the player
             camera.position.x -= this.velocity.x //This is the offset value that was created between the canvas goal post and the camerabox that exceeded out of the goal post
@@ -149,12 +151,12 @@ class Player extends Sprite {
     }
     when_to_MoveCameraToUp({camera,canvas,background_height})
     {
-         //So that the character doesn't see the top side of the canvas
+         //So that the character doesn't see the bottom side of the canvas
          if(this.camera_box.position.y + this.camera_box.height + this.velocity.y >= background_height)
          {
              return
          }
-        if(this.camera_box.position.y + this.camera_box.height >= Math.abs(camera.position.y) + canvas.height/4) //Dividing by 4 as it is the amount that is being translated by
+        if(this.camera_box.position.y + this.camera_box.height >= Math.abs(camera.position.y) + canvas.height/scale_amount) //Dividing by 4 as it is the amount that is being translated by
         {
             //Since when we are moving to the left, our velocity is negative so the camera position will be positive and thus shifting to the right
             camera.position.y -= this.velocity.y 
@@ -170,7 +172,7 @@ class Player extends Sprite {
                 x:this.position.x -78,
                 y:this.position.y -20,
             },
-            width: 200,
+            width: this.camera_box_width,
             height:80,
         }
     }

@@ -63,6 +63,11 @@ body {
     background-color: transparent;
 }
 
+.win_main
+{
+    text-align: center;
+}
+
 /* Styles for Win Page */
 .Win-Page {
     height: 100vh;
