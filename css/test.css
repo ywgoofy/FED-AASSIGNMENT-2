@@ -1,0 +1,38 @@
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure the preloader is on top of other elements */
+}
+
+.loader-wrapper img {
+    width: 100px; /* Adjust the width and height according to your GIF size */
+    height: 100px;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    opacity: 1;
+    z-index: 999;
+}

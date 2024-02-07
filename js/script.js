@@ -283,3 +283,20 @@ if(window.location.pathname === "/html/MainMenu.html")
         button.style.transform = "scale(1)";
     }
 }
+
+//Win Page
+document.addEventListener("DOMContentLoaded", function () {
+    // Check if the current page is the Win Page
+    if (document.body.classList.contains("Win-Page")) {
+ 
+        // Load and play Lottie animation
+        var animationContainer = document.getElementById("lottie-container");
+        var animation = lottie.loadAnimation({
+            container: animationContainer,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "C:\\Users\\tanye\\OneDrive - Ngee Ann Polytechnic\\SEM 2\\FED\\FED ASG 2\\FED-AASSIGNMENT-2-\\img\\LottieAnimations\\TrophyLottie.json", // Replace with the correct path to your Lottie animation JSON file
+        });
+    }
+});

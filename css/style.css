@@ -1,3 +1,4 @@
+/* Styles for the Main Menu*/
 body {
     margin: 0;
     /*background-color: #000;*/ /* Optional: Set a base background color */
@@ -29,7 +30,7 @@ body {
 
 .menu-buttons h1 {
     font-family: 'Workbench';
-    font-size: 72px;
+    font-size: 80px;
     color: #710707;
     text-align: center;
     margin-bottom: 20px;
@@ -44,11 +45,11 @@ body {
 }
 
 .menu-buttons button {
-    padding: 10px 20px; /* Adjust the padding as needed */
+    padding: 7px 20px; /* Adjust the padding as needed */
     border: none;
     background-color: transparent;
     color: #fff;
-    font-size: 26px;
+    font-size: 34px;
     cursor: pointer;
     border-radius: 15px;
     font-family: 'Honk';
@@ -62,8 +63,82 @@ body {
     background-color: transparent;
 }
 
-.win_screen_buttons
-{
-    position:relative;
-    margin-top:45%;
+/* Styles for Win Page */
+.Win-Page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.Win-Page img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Send the image to the background */
+}
+
+
+.container {
+    position: relative;
+  }
+  
+.lottie-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Place it above other elements */
+}
+
+/* Apply the same styles as main menu buttons to the win text */
+.jumbotron {
+    text-align: center; /* Center the content within the jumbotron */
+}
+
+.jumbotron h1 {
+    font-family: 'Honk'; /* Use the Honk font-family for the "You Win!" text */
+    font-size: 76px; /* Adjust the font size as needed */
+    margin-bottom: 20px; /* Add margin below the "You Win!" text for spacing */
+}
+
+.jumbotron p {
+    font-family: 'Protest Riot'; /* Use the Protest Riot font-family for the "You found the treasure" text */
+    font-size: 24px; /* Adjust the font size as needed */
+    color: white; /* Set text color to white */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+}
+
+.win_screen_buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.win_button {
+    font-family: 'Pixelify Sans', sans-serif; /* Use the Pixelify Sans font-family for the buttons */
+    background-color: black; /* Set the background color to black */
+    color: white; /* Set text color to white */
+    border: 2px solid transparent; /* Add border to the buttons */
+    padding: 10px 20px; /* Add padding to the buttons */
+    border-radius: 15px; /* Add border radius for rounded corners */
+    cursor: pointer; /* Add cursor pointer for interactive feel */
+    text-decoration: none; /* Remove default link underline */
+    display: inline-block; /* Allow the button to shrink to fit its contents */
+    margin-right: 10px; /* Adjust margin between buttons */
+    font-size: 30px;
+    transition: border-color 0.3s ease; /* Add transition for smoother border color change */
+}
+
+.win_button:hover {
+    border-color: green; /* Change border color to green on hover */
+    transform: translateY(-10px); /* Move the button up by 10 pixels on hover */
+}
+
+.main_menu_button:hover {
+    border-color: darkred; /* Change border color to dark red on hover */
 }
