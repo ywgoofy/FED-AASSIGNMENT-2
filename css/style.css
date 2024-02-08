@@ -203,13 +203,19 @@ body {
 }
 
 /* Adjust text box lengths */
-.form-group {
+.form-group2{
     width: 50%; /* Set the width to 50% */
     font-family: 'Pixelify Sans', 'sans-serif';
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
     color: rgb(230, 218, 52);
 }
-
+.form-group {
+    width: 50%; /* Set the width to 50% */
+    font-family: 'Pixelify Sans', 'sans-serif';
+    font-size: larger;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add an outline with a shadow effect */
+    color: rgb(255, 94, 0);
+}
 .log-button {
     background-color: #4CAF50; /* Set the background color */
     color: white; /* Set the text color */
@@ -232,7 +238,7 @@ body {
 
 .SignUp-Page {
     margin-top: 20px;
-    margin-left: 200px; /* Add margin to the left side */
+    margin-left: 20px; /* Add margin to the left side */
 }
     
 
