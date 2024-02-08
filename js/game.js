@@ -172,11 +172,11 @@ const chest = new Sprite(
         position:
         {
             //Supposed location of the chest 
-            x:288,
-            y:112,
+            //x:288,
+            //y:112,
             //Testing location:
-            //x:0,
-            //y:1085,
+            x:0,
+            y:1085,
         },
         imageSrc: '/img/chest/Idle.png',
         frame_rate: 5,
@@ -228,6 +228,7 @@ const camera =
 const leftButton = document.getElementById('Left-button')
 const rightButton = document.getElementById('Right-button')
 const upButton = document.getElementById('Up-button')
+const escButton = document.getElementById('Esc-button');
 const perfectFrameTime = 1000 / 60;
 let deltaTime = 0;
 let lastTimestamp = 0;
@@ -384,7 +385,7 @@ window.addEventListener("keydown",(event)=>
                 let name = session_user[1]
                 let userid = session_user[3] 
                 //Updating the count of chest opened
-                const APIKEY = "65b1ebaf7307823ba86708aa"
+                const APIKEY = "65c49b555eab383b979cb9e7"
                 let settings_Get =
                 {
                     method: "GET", //[cher] we will use GET to retrieve info
@@ -396,7 +397,7 @@ window.addEventListener("keydown",(event)=>
                     },
                 }
 
-                fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+                fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Get)
                 .then(res => {
 
                     if(!res.ok)
@@ -430,7 +431,7 @@ window.addEventListener("keydown",(event)=>
                                         }
                                     )
                                 }
-                                fetch(`https://fedassignment2-e5a1.restdb.io/rest/userinfo/${userid}`,settings_Put)
+                                fetch(`https://fedassignment2-b208.restdb.io/rest/userinfo/${userid}`,settings_Put)
                                 .then(res => {
 
                                     /*if(!res.ok)
@@ -489,6 +490,14 @@ window.addEventListener("keyup",(event)=>
 })
 
 //Mobile controls
+escButton.addEventListener('touchstart', ()=>
+{
+    let exit = window.confirm("Do you want to exit?")
+    if(exit)
+    {
+        window.location.href = "/html/MainMenu.html"
+    }
+})
 rightButton.addEventListener('touchstart',(e) =>
 {
     //e.preventDefault()
@@ -524,7 +533,7 @@ upButton.addEventListener('touchstart',(e)=>
                 let name = session_user[1]
                 let userid = session_user[3] 
                 //Updating the count of chest opened
-                const APIKEY = "65b1ebaf7307823ba86708aa"
+                const APIKEY = "65c49b555eab383b979cb9e7"
                 let settings_Get =
                 {
                     method: "GET", //[cher] we will use GET to retrieve info
@@ -536,7 +545,7 @@ upButton.addEventListener('touchstart',(e)=>
                     },
                 }
 
-                fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+                fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Get)
                 .then(res => {
 
                     if(!res.ok)
@@ -570,7 +579,7 @@ upButton.addEventListener('touchstart',(e)=>
                                         }
                                     )
                                 }
-                                fetch(`https://fedassignment2-e5a1.restdb.io/rest/userinfo/${userid}`,settings_Put)
+                                fetch(`https://fedassignment2-b208.restdb.io/rest/userinfo/${userid}`,settings_Put)
                                 .then(res => {
 
                                     /*if(!res.ok)

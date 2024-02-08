@@ -6,7 +6,7 @@ if(window.location.pathname === '/html/SignUp.html')
 
     document.addEventListener("DOMContentLoaded",function(){
 
-    const APIKEY = "65b1ebaf7307823ba86708aa"
+    const APIKEY = "65c49b555eab383b979cb9e7"
     //Submit
     let settings_Get =
     {
@@ -18,7 +18,7 @@ if(window.location.pathname === '/html/SignUp.html')
             "Cache-Control": "no-cache"
         },
     }
-    fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo  ", settings_Get)
+    fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Get)
             .then(res => res.json())
             .then(data => {
                 localStorage.setItem('Users',JSON.stringify(data));
@@ -91,7 +91,7 @@ if(window.location.pathname === '/html/SignUp.html')
                 }
                 document.getElementById("submit_button").disabled = true;
                 document.getElementById("sign_up_form").reset();
-                fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Post)
+                fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Post)
                 .then(res => {
                     res.json()
                     
@@ -115,7 +115,7 @@ if(window.location.pathname === "/html/LogIn.html")
 {
     
     document.addEventListener("DOMContentLoaded",function(){
-        const APIKEY = "65b1ebaf7307823ba86708aa"
+        const APIKEY = "65c49b555eab383b979cb9e7"
         //Submit
     let settings_Get =
     {
@@ -143,7 +143,7 @@ if(window.location.pathname === "/html/LogIn.html")
         document.getElementById("log_in_form").reset();
         
         //localStorage.setItem('login',false);
-        fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+        fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Get)
         .then(res => {
 
             if(!res.ok)
@@ -204,7 +204,7 @@ if(window.location.pathname === "/html/leaderboard.html")
 {
     document.addEventListener("DOMContentLoaded",function()
     {
-        const APIKEY = "65b1ebaf7307823ba86708aa"
+        const APIKEY = "65c49b555eab383b979cb9e7"
         limit = 5;
         let settings_Get =
         {
@@ -216,7 +216,7 @@ if(window.location.pathname === "/html/leaderboard.html")
                 "Cache-Control": "no-cache"
             },
         }
-        fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo", settings_Get)
+        fetch("https://fedassignment2-b208.restdb.io/rest/userinfo", settings_Get)
         .then(response => response.json())
         .then(data => {
             data.sort((a, b) => b.ChestOpened - a.ChestOpened);

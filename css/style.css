@@ -410,6 +410,17 @@ body {
     color: white;
     border: none;
 }
+#Esc-Button
+{
+    position:absolute;
+    top:2%;
+    left:2%;
+    width: 100px;
+    height: 40px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
 @media (max-width: 600px)
 {
     #hidden_buttons
