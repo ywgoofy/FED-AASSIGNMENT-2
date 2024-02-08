@@ -30,6 +30,32 @@ if(window.location.pathname === '/html/SignUp.html')
             let name = document.getElementById("name").value;
             let email = document.getElementById("email_sign_up").value;
             let password = document.getElementById("password_sign_up").value;
+            let valid_email = false
+            for(let i = 0; i<email.length; i++)
+            {
+                if(email[i] === "@")
+                {
+                    for(let j = 0; j<email.length; j++)
+                    {
+                        if(email[j] === ".")
+                        {
+                            valid_email = true
+                            
+                        }
+                    }
+                    
+                }
+            }
+            if(!valid_email)
+            {
+                window.alert('Please enter a valid email')
+                return
+            }
+            if(name === "" || email === "" || password === "")
+            {
+                window.alert('Please fill up all fields')
+                return;
+            }
 
             document.getElementById("submit_button").disabled = true;
             document.getElementById("sign_up_form").reset();
@@ -107,8 +133,11 @@ if(window.location.pathname === "/html/LogIn.html")
         
         let email = document.getElementById("email_log_in").value;
         let password = document.getElementById("password_log_in").value;
-
-
+        if(email === "" || password === "")
+        {
+            window.alert('Please fill in both field')
+            return
+        }
         
         document.getElementById("login_button").disabled = true;
         document.getElementById("log_in_form").reset();
@@ -145,7 +174,7 @@ if(window.location.pathname === "/html/LogIn.html")
             {
                 window.alert("LogIn Unsuccessful")
                 document.getElementById("login_button").disabled = false;
-                localStorage.setItem('Session_User',null)
+                //localStorage.setItem('Session_User',null)
             }
             
             //console.log('LogIn Unsuccessful')
@@ -281,7 +310,7 @@ if (window.location.pathname === "/html/MainMenu.html") {
             if (localStorage.getItem('Login') === false) {
                 window.alert('Please log in first.');
             } else {
-                window.location.href = '/html/game.html';
+                window.location.href = '/html/loading.html';
             }
         });
     });
@@ -315,4 +344,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
+//Loading page
+if(window.location.pathname === "/html/loading.html")
+{
+    window.setTimeout(()=>
+    {
+        console.log('Loading')
+        window.location.href = 'game.html'
+    },3000)
+}
