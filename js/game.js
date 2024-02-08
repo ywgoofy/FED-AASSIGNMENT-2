@@ -172,11 +172,11 @@ const chest = new Sprite(
         position:
         {
             //Supposed location of the chest 
-            //x:288,
-            //y:112,
+            x:288,
+            y:112,
             //Testing location:
-            x:0,
-            y:1085,
+            //x:0,
+            //y:1085,
         },
         imageSrc: '/img/chest/Idle.png',
         frame_rate: 5,
@@ -268,11 +268,11 @@ function animate(timestamp)
     c.translate(camera.position.x,camera.position.y)
     background.update();
 
-    
+    /*
     //Camera
     c.fillStyle = 'rgba(0,0,255,0.2)'
     c.fillRect(player.camera_box.position.x,player.camera_box.position.y,player.camera_box.width,player.camera_box.height)
-    
+    */
     //Collision blocks/ Displaying the rectangles of the collision blocks
     //For testing
     /*collisionblocks.forEach((collisionBlock)=>{

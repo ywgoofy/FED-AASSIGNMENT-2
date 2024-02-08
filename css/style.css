@@ -427,6 +427,15 @@ body {
     {
         display: block;
     }
+    .Leaderboard-Page img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        object-fit: cover;
+        z-index: -1; /* Send the image to the background */
+    }
 
 
 }
@@ -462,8 +471,29 @@ body {
         color: white;
         border: none;
     }
+    .Leaderboard-Page img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 135%;
+        height: 135%;
+        object-fit: cover;
+        z-index: -1; /* Send the image to the background */
+    }
 }
 
+@media(max-width: 300px)
+{
+    .Leaderboard-Page img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 170%;
+        height: 170%;
+        object-fit: cover;
+        z-index: -1; /* Send the image to the background */
+    }
+}
 
 #preloader{
     background: #000;

@@ -73,7 +73,8 @@ if(window.location.pathname === '/html/SignUp.html')
             }
 
             if(!dupe_email)
-            {
+            {  
+                
                 let settings_Post = {
                 method: "POST",
                 headers: {
@@ -97,6 +98,7 @@ if(window.location.pathname === '/html/SignUp.html')
                     
                     })
                 .then(data => {
+                    window.alert('Successfully Signed Up')
                     console.log(data)
                     
                 })
@@ -245,6 +247,7 @@ if(window.location.pathname === "/html/leaderboard.html")
 if (window.location.pathname === "/html/MainMenu.html") {
     document.addEventListener("DOMContentLoaded", function () {
 
+        //For pop up
         const openbtn = document.getElementById("openControls");
         const closebtn = document.getElementById("closeControls");
         const popup = document.getElementById("popup");
