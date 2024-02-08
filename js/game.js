@@ -1,6 +1,6 @@
 
 
-
+//Canvas
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d")
 
@@ -8,9 +8,10 @@ const c = canvas.getContext("2d")
 canvas.width = 1024;
 canvas.height = 576 +200;
 
-
+//The amount to scale the map by
 let scale_amount = 4
 
+//The width of the box of the camera surrounding our player
 let camera_box_width = 200;
 
 //ResizeCanvas();
@@ -29,9 +30,10 @@ const scaledcanvas =  {
 let gravity = 0.5;
 
 
-
+//Default by the map
 const tile_map_width = 36
 const tile_size = 16;
+
 //Adding collisions (floor) to the map
 const floorcollisions_2D = []
 for(let i  = 0; i<floorcollisions.length; i+=tile_map_width)
@@ -90,8 +92,6 @@ const background = new Sprite(
             x:0,
             y:0,
         },
-        //imageSrc:'./img/Background.png'
-        //imageSrc : './img/Map.png'
         imageSrc: '/img/Map.png'
     }
 )
@@ -99,7 +99,6 @@ const background = new Sprite(
 const background_height = 72*16
 
 //Creating of player 
-//let player_velocity_x =2.5
 const player = new Player({
     position:
     {
@@ -110,7 +109,7 @@ const player = new Player({
     platformcollisionblocks: platform_collisionblocks,
     imageSrc: '/img/character/Idle.png',
     frame_rate: 2,
-    sprite_animation:
+    sprite_animation: //Animation for the character
     {
         Idle:
         {
@@ -171,12 +170,9 @@ const chest = new Sprite(
     {
         position:
         {
-            //Supposed location of the chest 
+            //Location of the chest 
             x:288,
             y:112,
-            //Testing location:
-            //x:0,
-            //y:1085,
         },
         imageSrc: '/img/chest/Idle.png',
         frame_rate: 5,
@@ -224,11 +220,13 @@ const camera =
     },
 }
 
-
+//Mobile buttons from html
 const leftButton = document.getElementById('Left-button')
 const rightButton = document.getElementById('Right-button')
 const upButton = document.getElementById('Up-button')
 const escButton = document.getElementById('Esc-button');
+
+//Normalizing speed
 const perfectFrameTime = 1000 / 60;
 let deltaTime = 0;
 let lastTimestamp = 0;
@@ -247,6 +245,7 @@ function animate(timestamp)
     deltaTime = (timestamp - lastTimestamp) / perfectFrameTime;
     lastTimestamp = timestamp;
 
+    //Normalizing speed
     if(deltaTime <0.5)
     {
         player_velocity_x = 2.5
@@ -259,6 +258,7 @@ function animate(timestamp)
     }
     count++
 
+    //Canvas background
     c.fillStyle = "white"   
     c.fillRect(0,0,canvas.width,canvas.height);
     //Scaling the background up by 4 times
@@ -268,6 +268,7 @@ function animate(timestamp)
     c.translate(camera.position.x,camera.position.y)
     background.update();
 
+    //For debugging
     /*
     //Camera
     c.fillStyle = 'rgba(0,0,255,0.2)'
@@ -285,21 +286,23 @@ function animate(timestamp)
         
     })*/
 
+    //Drawing our player and chest and updating them
     player.update();
     chest.update();
-    //IfColliding()
+    
+    //Checking for actions from the user 
     player.velocity.x = 0
     if(keys.d.pressed)
     {
         player.previous_direction = 'right'
-        player.swapSprite("Run")
+        player.swapSprite("Run") //Switching the animation
         player.velocity.x = player_velocity_x;
         player.when_to_MoveCameraToLeft({camera,canvas,background})
     }
     else if(keys.a.pressed)
     {
         player.previous_direction = 'left'
-        player.swapSprite('RunLeft')
+        player.swapSprite('RunLeft') //Switching the animation
         player.velocity.x = -player_velocity_x;
         player.when_to_MoveCameraToRight({camera})
     }
@@ -311,7 +314,7 @@ function animate(timestamp)
         }
         else
         {
-            player.swapSprite('IdleLeft')
+            player.swapSprite('IdleLeft') //Switching the animation
         }
         
     }
@@ -325,7 +328,7 @@ function animate(timestamp)
         }
         else
         {
-            player.swapSprite('JumpLeft')
+            player.swapSprite('JumpLeft')//Switching the animation
         }
     }
     else if(player.velocity.y >0) //Falling
@@ -337,7 +340,7 @@ function animate(timestamp)
         }
         else
         {
-            player.swapSprite('FallLeft')
+            player.swapSprite('FallLeft')//Switching the animation
         }
         
     }
@@ -374,7 +377,7 @@ window.addEventListener("keydown",(event)=>
             keys.a.pressed = true            
             break;
         case "w":
-            if(IfColliding())
+            if(IfColliding()) //If the player collides with the chest
             {
                 chest.swapSprite('Open');
                 session_user = localStorage.getItem('Session_User')
@@ -388,7 +391,7 @@ window.addEventListener("keydown",(event)=>
                 const APIKEY = "65c49b555eab383b979cb9e7"
                 let settings_Get =
                 {
-                    method: "GET", //[cher] we will use GET to retrieve info
+                    method: "GET",
                     headers: 
                     {
                         "Content-Type": "application/json",
@@ -456,7 +459,6 @@ window.addEventListener("keydown",(event)=>
                     window.location.href = '/html/win.html'
                 },5000)
             }
-            //player.velocity.y = -8;
             
             else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
             {
@@ -498,30 +500,25 @@ escButton.addEventListener('touchstart', ()=>
         window.location.href = "/html/MainMenu.html"
     }
 })
-rightButton.addEventListener('touchstart',(e) =>
+rightButton.addEventListener('touchstart',() =>
 {
-    //e.preventDefault()
     keys.d.pressed = true;
 })
-rightButton.addEventListener('touchend',(e)=>
+rightButton.addEventListener('touchend',()=>
 {
-    //e.preventDefault()
     keys.d.pressed = false;
 })
 
-leftButton.addEventListener('touchstart',(e)=>
+leftButton.addEventListener('touchstart',()=>
 {
-    //e.preventDefault()
     keys.a.pressed = true;
 })
-leftButton.addEventListener('touchend',(e)=>
+leftButton.addEventListener('touchend',()=>
 {
-   // e.preventDefault()
     keys.a.pressed = false;
 })
-upButton.addEventListener('touchstart',(e)=>
+upButton.addEventListener('touchstart',()=>
 {
-    //e.preventDefault()
     if(IfColliding())
             {
                 chest.swapSprite('Open');
@@ -536,7 +533,7 @@ upButton.addEventListener('touchstart',(e)=>
                 const APIKEY = "65c49b555eab383b979cb9e7"
                 let settings_Get =
                 {
-                    method: "GET", //[cher] we will use GET to retrieve info
+                    method: "GET", 
                     headers: 
                     {
                         "Content-Type": "application/json",
@@ -604,7 +601,6 @@ upButton.addEventListener('touchstart',(e)=>
                     window.location.href = '/html/win.html'
                 },5000)
             }
-            //player.velocity.y = -8;
             else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
             {
                 player.AtFloor = false;
@@ -617,12 +613,15 @@ upButton.addEventListener('touchstart',(e)=>
             }
 })
 
+//Responsiveness of the map and player
 function ResizeCanvas()
 {
+    //Default to have black borders to eliminate scrollbars
     const width = window.innerWidth *0.97;
     const height = window.innerHeight *0.95;
     canvas.width = width;
     canvas.height = height;
+    //Media queries, if on a smaller device, the map will shrink and zoom out to suit the player
     if(window.innerWidth <600)
     {
         scale_amount = 3;

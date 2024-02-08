@@ -165,6 +165,7 @@ class Player extends Sprite {
 
     update_Camerabox()
     {
+        //Responsiveness for mobile, decreasing the camera box width
         if(window.innerWidth<600)
         {
             this.camera_box = 

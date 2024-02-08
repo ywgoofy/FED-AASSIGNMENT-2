@@ -22,6 +22,7 @@ class Sprite{
         this.frame_count = frame_count 
 
         this.sprite_animation = sprite_animation
+        //Creating image objects using a loop and passing through our animations animations
         if(sprite_animation != {})
         {
             for(let i in this.sprite_animation)
@@ -33,7 +34,7 @@ class Sprite{
         }
     }
 
-    draw()
+    draw() //Drawing out the player/chest/map
     {
 
         if(!this.image)
@@ -65,7 +66,7 @@ class Sprite{
         this.draw()
         this.updateCurrentFrame()
     }
-    updateCurrentFrame()
+    updateCurrentFrame() //Allows for animations to run
     {
         this.frame ++ ;
         if(this.frame % this.frame_count === 0)
@@ -81,7 +82,7 @@ class Sprite{
         }
         
     }
-    swapSprite(value)
+    swapSprite(value) //Switching of animations depending on the actions taken by the user
     {
         if(this.image === this.sprite_animation[value].image || this.loading)
         {

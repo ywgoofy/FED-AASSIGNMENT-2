@@ -10,7 +10,7 @@ if(window.location.pathname === '/html/SignUp.html')
     //Submit
     let settings_Get =
     {
-        method: "GET", //[cher] we will use GET to retrieve info
+        method: "GET",
         headers: 
         {
             "Content-Type": "application/json",
@@ -31,6 +31,7 @@ if(window.location.pathname === '/html/SignUp.html')
             let email = document.getElementById("email_sign_up").value;
             let password = document.getElementById("password_sign_up").value;
             let valid_email = false
+            //Checking if the email is vlaid
             for(let i = 0; i<email.length; i++)
             {
                 if(email[i] === "@")
@@ -51,6 +52,7 @@ if(window.location.pathname === '/html/SignUp.html')
                 window.alert('Please enter a valid email')
                 return
             }
+            //Checking if the user has entered all the fieds required
             if(name === "" || email === "" || password === "")
             {
                 window.alert('Please fill up all fields')
@@ -60,6 +62,7 @@ if(window.location.pathname === '/html/SignUp.html')
             document.getElementById("submit_button").disabled = true;
             document.getElementById("sign_up_form").reset();
 
+            //Checking if the email entered is a duplicate one from the database
             for(let i = 0; i<data.length; i++)
             {
                 if(data[i].Email === email)
@@ -72,6 +75,7 @@ if(window.location.pathname === '/html/SignUp.html')
                 }
             }
 
+            //Posting of data to the restdb API
             if(!dupe_email)
             {  
                 
@@ -121,7 +125,7 @@ if(window.location.pathname === "/html/LogIn.html")
         //Submit
     let settings_Get =
     {
-        method: "GET", //[cher] we will use GET to retrieve info
+        method: "GET", 
         headers: 
         {
             "Content-Type": "application/json",
@@ -135,6 +139,7 @@ if(window.location.pathname === "/html/LogIn.html")
         
         let email = document.getElementById("email_log_in").value;
         let password = document.getElementById("password_log_in").value;
+        //Checking for empty fields
         if(email === "" || password === "")
         {
             window.alert('Please fill in both field')
@@ -176,16 +181,12 @@ if(window.location.pathname === "/html/LogIn.html")
             {
                 window.alert("LogIn Unsuccessful")
                 document.getElementById("login_button").disabled = false;
-                //localStorage.setItem('Session_User',null)
             }
             
-            //console.log('LogIn Unsuccessful')
         })
-
+        //Setting localstorage for the user
         session_user = localStorage.getItem('Session_User')
         session_user = session_user.split(',')
-        //let data = JSON.parse(localStorage.getItem('Users'))
-        //user = data[session_user_index]
         console.log(session_user)
             
         })
@@ -193,13 +194,14 @@ if(window.location.pathname === "/html/LogIn.html")
     })
 }
 
+/*
 //Testing
 session_user = localStorage.getItem('Session_User')
         session_user = session_user.split(',')
         //let data = JSON.parse(localStorage.getItem('Users'))
         //user = data[session_user_index]
         console.log(session_user)
-
+*/
 
 //LeaderBoard
 if(window.location.pathname === "/html/leaderboard.html")
@@ -210,7 +212,7 @@ if(window.location.pathname === "/html/leaderboard.html")
         limit = 5;
         let settings_Get =
         {
-            method: "GET", //[cher] we will use GET to retrieve info
+            method: "GET",
             headers: 
             {
                 "Content-Type": "application/json",
@@ -224,7 +226,7 @@ if(window.location.pathname === "/html/leaderboard.html")
             data.sort((a, b) => b.ChestOpened - a.ChestOpened);
             let content = "";
             let count = 1;
-
+            //Adding on the content from the restdb API
             for (var i = 0; i < data.length && i < limit; i++) {
             content = `${content}<tr id='${data[i]._id}'>
             <td>${count}</td>
