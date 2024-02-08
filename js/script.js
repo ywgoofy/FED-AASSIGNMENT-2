@@ -77,14 +77,6 @@ if(window.location.pathname === '/html/SignUp.html')
             }
         
         })
-        document.getElementById("database").addEventListener("click",function(e){
-            e.preventDefault()
-            fetch("https://fedassignment2-e5a1.restdb.io/rest/userinfo  ", settings_Get)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-        })
     })
 }
 
@@ -165,10 +157,6 @@ if(window.location.pathname === "/html/LogIn.html")
         //user = data[session_user_index]
         console.log(session_user)
             
-        })
-        document.getElementById("check_user").addEventListener("click",function(e){
-            e.preventDefault();
-            console.log(session_user[0])
         })
         
     })

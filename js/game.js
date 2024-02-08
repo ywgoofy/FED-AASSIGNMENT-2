@@ -11,7 +11,7 @@ let scale_amount = 4
 
 let camera_box_width = 200;
 
-ResizeCanvas();
+//ResizeCanvas();
 window.addEventListener('resize', ()=>
 {
     ResizeCanvas();
@@ -238,7 +238,7 @@ let player_velocity_y = 8
 
 function animate(timestamp)
 {
-    
+    ResizeCanvas();
     window.requestAnimationFrame(animate)
     deltaTime = (timestamp - lastTimestamp) / perfectFrameTime;
     lastTimestamp = timestamp;
@@ -344,8 +344,10 @@ animate()
 //Player movements
 window.addEventListener("keydown",(event)=>
 {
+    console.log(event.key)
     switch(event.key)
     {
+        
         //Check for exit
         case "Escape":
             let exit = window.confirm("Do you want to exit?")
@@ -448,6 +450,7 @@ window.addEventListener("keydown",(event)=>
                 },5000)
             }
             //player.velocity.y = -8;
+            
             else if(player.velocity.y > 0) //If player is falling, they won't be able to jump
             {
                 player.AtFloor = false;
@@ -601,6 +604,10 @@ upButton.addEventListener('touchstart',(e)=>
 
 function ResizeCanvas()
 {
+    const width = window.innerWidth *0.97;
+    const height = window.innerHeight *0.95;
+    canvas.width = width;
+    canvas.height = height;
     if(window.innerWidth <600)
     {
         scale_amount = 3;
@@ -611,10 +618,7 @@ function ResizeCanvas()
             scale_amount = 2;
         }
     }
-    const width = window.innerWidth *0.97;
-    const height = window.innerHeight *0.95;
-    canvas.width = width;
-    canvas.height = height;
+    
 }
 
 function IfColliding()
