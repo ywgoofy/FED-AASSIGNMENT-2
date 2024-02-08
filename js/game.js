@@ -6,7 +6,9 @@ const c = canvas.getContext("2d")
 
 //Setting the height and width of the canvas
 canvas.width = 1024;
-canvas.height = 576;
+canvas.height = 576 +200;
+
+
 let scale_amount = 4
 
 let camera_box_width = 200;
@@ -230,6 +232,7 @@ const perfectFrameTime = 1000 / 60;
 let deltaTime = 0;
 let lastTimestamp = 0;
 let count = 1
+
 function start() {
     requestAnimationFrame(update);
 }
@@ -264,7 +267,11 @@ function animate(timestamp)
     c.translate(camera.position.x,camera.position.y)
     background.update();
 
-
+    
+    //Camera
+    c.fillStyle = 'rgba(0,0,255,0.2)'
+    c.fillRect(player.camera_box.position.x,player.camera_box.position.y,player.camera_box.width,player.camera_box.height)
+    
     //Collision blocks/ Displaying the rectangles of the collision blocks
     //For testing
     /*collisionblocks.forEach((collisionBlock)=>{
@@ -344,7 +351,6 @@ animate()
 //Player movements
 window.addEventListener("keydown",(event)=>
 {
-    console.log(event.key)
     switch(event.key)
     {
         
@@ -611,7 +617,9 @@ function ResizeCanvas()
     if(window.innerWidth <600)
     {
         scale_amount = 3;
-        //player.camera_box_width = 100
+        
+
+        //player.camera_box.position.x = player.position.x-30
         //return
         if(window.innerWidth<400)
         {

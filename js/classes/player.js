@@ -165,6 +165,20 @@ class Player extends Sprite {
 
     update_Camerabox()
     {
+        if(window.innerWidth<600)
+        {
+            this.camera_box = 
+            {
+                position:
+                {
+                    x:this.position.x -48,
+                    y:this.position.y -20,
+                },
+                width: this.camera_box_width -70,
+                height:80,
+            }
+            return
+        }
         this.camera_box = 
         {
             position:
