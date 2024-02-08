@@ -322,7 +322,9 @@ document.addEventListener("DOMContentLoaded", function () {
             renderer: "svg",
             loop: true,
             autoplay: true,
-            path: "\\img\\LottieAnimations\\TrophyLottie.json", // Replace with the correct path to your Lottie animation JSON file
+            path: "/img/LottieAnimations/TrophyLottie.json",
         });
     }
 });
+
+
