@@ -361,3 +361,88 @@ body {
     background-color: #414040; /* Change background color on hover */
 }
 
+#hidden_buttons
+{
+    display: none;
+}
+
+#buttons-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+#Left-button
+{
+    display: inline-block;
+    /* Additional styling for buttons */
+    width: 100px;
+    height: 40px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    margin-right: 10px; /* Add some spacing between buttons */
+}
+
+#Right-button
+{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    margin-right: 10px;
+}
+#Up-button
+{
+    float: right;
+    width: 100px;
+    height: 40px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+@media (max-width: 600px)
+{
+    #hidden_buttons
+    {
+        display: block;
+    }
+
+
+}
+
+@media(max-width:400px)  {
+    #Left-button
+    {
+        display: inline-block;
+        width: 70px;
+        height: 25px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        margin-right: 10px;
+    }
+
+    #Right-button
+    {
+        display: inline-block;
+        width: 70px;
+        height: 25px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        margin-right: 10px;
+    }
+    #Up-button
+    {
+        float: right;
+        width: 70px;
+        height: 25px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+    }
+}

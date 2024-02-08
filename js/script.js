@@ -242,7 +242,7 @@ if (window.location.pathname === "/html/MainMenu.html") {
 
         // Get all buttons
         var playButton = document.getElementById("play-button");
-        var controlsButton = document.getElementById("controls-button");
+        var controlsButton = document.getElementById("openControls");
         var leaderboardButton = document.getElementById("leaderboard-button");
         var loginButton = document.getElementById("login-button");
         var signupButton = document.getElementById("signup-button");

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function showLoadingScreen() {
-    document.getElementById("loading-screen-container").innerHTML = '<iframe src="/index.html" id="loading-screen-iframe"></iframe>';
+    document.getElementById("loading-screen-container").innerHTML = '<iframe src="index.html" id="loading-screen-iframe"></iframe>';
 }
 
 function hideLoadingScreen() {

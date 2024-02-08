@@ -64,11 +64,11 @@ class Player extends Sprite {
         this.update_HitBox()
         this.update_Camerabox()
 
-        
+        /*
         //Camera testing
         c.fillStyle = 'rgba(0,0,255,0.2)'
         c.fillRect(this.camera_box.position.x,this.camera_box.position.y,this.camera_box.width,this.camera_box.height)
-
+        */
         /*
         //This rect represents the hit box
         c.fillStyle = 'rgba(0,0,255,0.2)'
