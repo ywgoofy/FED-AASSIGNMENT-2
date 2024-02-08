@@ -346,6 +346,17 @@ window.addEventListener("keydown",(event)=>
 {
     switch(event.key)
     {
+        //Check for exit
+        case "Escape":
+            let exit = window.confirm("Do you want to exit?")
+            if(exit)
+            {
+                window.location.href = "/html/MainMenu.html"
+            }
+            else
+            {
+                break;
+            }
         case "d":
             keys.d.pressed = true
             break;
